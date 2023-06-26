@@ -39,8 +39,11 @@ public class homeworkSem5 {
                     String name = sc.nextLine();
                     if (spravochnik.containsKey(name)) {
                         for (var item : spravochnik.entrySet()) {
-                            item.getValue().addAll(AddList()); 
-                            break;
+                            if (item.getKey().equals(name)){
+                                item.getValue().addAll(AddList()); 
+                                break;
+                            }
+                            
                         }
                         break;
                     }
@@ -52,6 +55,7 @@ public class homeworkSem5 {
                 }
                 case "2":{
                     sortPrint(spravochnik);
+                    break;
                 }
                 case "exit": {
                     getOut = true;
@@ -75,12 +79,12 @@ public class homeworkSem5 {
         Set<String> keySet = spr.keySet();
         int maxCount = 0;
         int minCount = 1_000_000;
-        // for (var item : spr.entrySet()) {
-        //     if (maxCount < item.getValue().size())
-        //         maxCount = item.getValue().size();
-        //     if (minCount > item.getValue().size())
-        //         minCount = item.getValue().size();
-        // }
+        for (var item : spr.entrySet()) {
+            if (maxCount < item.getValue().size())
+                maxCount = item.getValue().size();
+            if (minCount > item.getValue().size())
+                minCount = item.getValue().size();
+        }
         Stack<String> st = new Stack<>();
         int num = minCount;
         while (num <= maxCount) {
